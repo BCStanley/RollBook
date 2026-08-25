@@ -1,0 +1,46 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Virtualenvs
+venv/
+.venv/
+env/
+ENV/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Local config / environment variables
+.env
+.env.*
+secrets.json
+
+# Databases & run artefacts (never commit real research data)
+*.sqlite
+*.sqlite3
+*.db
+
+# Downloaded OCR model weights (fetched via `rollbook models pull`)
+.rollbook/models/
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Keep empty directories
+!.gitkeep
