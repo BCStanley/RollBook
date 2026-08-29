@@ -1,0 +1,10 @@
+{
+  "\\bBirm\\.?\\b": "Birmingham",
+  "\\bLanc\\.?\\b": "Lancashire",
+  "\\bLiv\\.?\\b": "Liverpool",
+  "\\bManch\\.?\\b": "Manchester",
+  "\\bMark\\.?\\b": "market",
+  "\\bNewc\\.?\\b": "Newcastle",
+  "\\bSouthamp\\.?\\b": "Southampton",
+  "\\bTrus\\.?\\b": "Trustees"
+}

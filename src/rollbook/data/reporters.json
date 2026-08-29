@@ -1,0 +1,1480 @@
+{
+
+
+  "Act": {"canonical_abbrev": "act", "vols": 2, "er_vol": [12], "series": ["P.C."]},
+  "Act.": {"canonical_abbrev": "act", "vols": 2, "er_vol": [12], "series": ["P.C."]},
+  "Acton": {"canonical_abbrev": "act", "vols": 2, "er_vol": [12], "series": ["P.C."]},
+
+  "Add": {"canonical_abbrev": "add", "vols": 3, "er_vol": [162], "series": ["Ecc.", "Adm.", "P.&.D."]},
+  "Add.": {"canonical_abbrev": "add", "vols": 3, "er_vol": [162], "series": ["Ecc.", "Adm.", "P.&.D."]},
+
+  "Ad & E": {"canonical_abbrev": "ad e", "vols": 12, "er_vol": [110, 111, 112, 113], "series": ["K.B."]},
+  "Ad. & E.": {"canonical_abbrev": "ad e", "vols": 12, "er_vol": [110, 111, 112, 113], "series": ["K.B."]},
+  "Ad & E.": {"canonical_abbrev": "ad e", "vols": 12, "er_vol": [110, 111, 112, 113], "series": ["K.B."]},
+  "Ad. & E": {"canonical_abbrev": "ad e", "vols": 12, "er_vol": [110, 111, 112, 113], "series": ["K.B."]},
+
+  "Al": {
+    "canonical_abbrev": "al",
+    "vols": null,
+    "er_vol": [
+      82
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Amb": {
+    "canonical_abbrev": "amb",
+    "vols": null,
+    "er_vol": [
+      27
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Andr": {
+    "canonical_abbrev": "andr",
+    "vols": null,
+    "er_vol": [
+      95
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Barnes": {
+    "canonical_abbrev": "barnes",
+    "vols": null,
+    "er_vol": [
+      94
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "B. & C": {
+    "canonical_abbrev": "b & c",
+    "vols": null,
+    "er_vol": [
+      107,
+      108,
+      109
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "B & C": {
+    "canonical_abbrev": "b & c",
+    "vols": null,
+    "er_vol": [
+      107,
+      108,
+      109
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Bell": {
+    "canonical_abbrev": "bell",
+    "vols": null,
+    "er_vol": [
+      169
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Bel": {
+    "canonical_abbrev": "bel",
+    "vols": null,
+    "er_vol": [
+      72
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Benl": {
+    "canonical_abbrev": "benl",
+    "vols": null,
+    "er_vol": [
+      73
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Ben. & D": {
+    "canonical_abbrev": "ben & d",
+    "vols": null,
+    "er_vol": [
+      123
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Ben & D": {
+    "canonical_abbrev": "ben & d",
+    "vols": null,
+    "er_vol": [
+      123
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "B.N.C": {
+    "canonical_abbrev": "bnc",
+    "vols": null,
+    "er_vol": [
+      73
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "BNC": {
+    "canonical_abbrev": "bnc",
+    "vols": null,
+    "er_vol": [
+      73
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Br. & Lush": {
+    "canonical_abbrev": "br & lush",
+    "vols": null,
+    "er_vol": [
+      167
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Br & Lush": {
+    "canonical_abbrev": "br & lush",
+    "vols": null,
+    "er_vol": [
+      167
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Bro. C.C": {
+    "canonical_abbrev": "bro cc",
+    "vols": null,
+    "er_vol": [
+      28,
+      29
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Bro CC": {
+    "canonical_abbrev": "bro cc",
+    "vols": null,
+    "er_vol": [
+      28,
+      29
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Bro. P.C": {
+    "canonical_abbrev": "bro pc",
+    "vols": null,
+    "er_vol": [
+      1,
+      2,
+      3
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "Bro PC": {
+    "canonical_abbrev": "bro pc",
+    "vols": null,
+    "er_vol": [
+      1,
+      2,
+      3
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "Brownl": {
+    "canonical_abbrev": "brownl",
+    "vols": null,
+    "er_vol": [
+      123
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Bunb": {
+    "canonical_abbrev": "bunb",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Burrell": {
+    "canonical_abbrev": "burrell",
+    "vols": null,
+    "er_vol": [
+      167
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Calth": {
+    "canonical_abbrev": "calth",
+    "vols": null,
+    "er_vol": [
+      80
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Car. & M": {
+    "canonical_abbrev": "car & m",
+    "vols": null,
+    "er_vol": [
+      174
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Car & M": {
+    "canonical_abbrev": "car & m",
+    "vols": null,
+    "er_vol": [
+      174
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Cart": {
+    "canonical_abbrev": "cart",
+    "vols": null,
+    "er_vol": [
+      124
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Carth": {
+    "canonical_abbrev": "carth",
+    "vols": null,
+    "er_vol": [
+      90
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Cary": {
+    "canonical_abbrev": "cary",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Cas. t. Hard.": {
+    "canonical_abbrev": "cas t hard or",
+    "vols": null,
+    "er_vol": [
+      95
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Cas t Hard": {
+    "canonical_abbrev": "cas t hard or",
+    "vols": null,
+    "er_vol": [
+      95
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Cas t H": {
+    "canonical_abbrev": "cas t hard or",
+    "vols": null,
+    "er_vol": [
+      95
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Cas. t. H": {
+    "canonical_abbrev": "cas t hard or",
+    "vols": null,
+    "er_vol": [
+      95
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Cases. t. Talb": {
+    "canonical_abbrev": "cases t talb",
+    "vols": null,
+    "er_vol": [
+      25
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Cases t Talb": {
+    "canonical_abbrev": "cases t talb",
+    "vols": null,
+    "er_vol": [
+      25
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Choyce Cases": {
+    "canonical_abbrev": "choyce cases",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Colles": {
+    "canonical_abbrev": "colles",
+    "vols": null,
+    "er_vol": [
+      1
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "Comb": {
+    "canonical_abbrev": "comb",
+    "vols": null,
+    "er_vol": [
+      90
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Cooke": {
+    "canonical_abbrev": "cooke",
+    "vols": null,
+    "er_vol": [
+      125
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "C.P. Coop. or": {
+    "canonical_abbrev": "cp coop or",
+    "vols": null,
+    "er_vol": [
+      47
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "CP Coop or": {
+    "canonical_abbrev": "cp coop or",
+    "vols": null,
+    "er_vol": [
+      47
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Cr. & Ph": {
+    "canonical_abbrev": "cr & ph",
+    "vols": null,
+    "er_vol": [
+      41
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Cr & Ph": {
+    "canonical_abbrev": "cr & ph",
+    "vols": null,
+    "er_vol": [
+      41
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Cun": {
+    "canonical_abbrev": "cun",
+    "vols": null,
+    "er_vol": [
+      94
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Dan": {
+    "canonical_abbrev": "dan",
+    "vols": null,
+    "er_vol": [
+      159
+    ],
+    "series": [
+      "Ex. (Eq.)"
+    ]
+  },
+  "Dav": {
+    "canonical_abbrev": "dav",
+    "vols": null,
+    "er_vol": [
+      80
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Deane": {
+    "canonical_abbrev": "deane",
+    "vols": null,
+    "er_vol": [
+      164
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Dears": {
+    "canonical_abbrev": "dears",
+    "vols": null,
+    "er_vol": [
+      169
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Dears. & Bell": {
+    "canonical_abbrev": "dears & bell",
+    "vols": null,
+    "er_vol": [
+      169
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Dears & Bell": {
+    "canonical_abbrev": "dears & bell",
+    "vols": null,
+    "er_vol": [
+      169
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Dick": {
+    "canonical_abbrev": "dick",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Donn. Eq": {
+    "canonical_abbrev": "donn eq",
+    "vols": null,
+    "er_vol": [
+      47
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Donn Eq": {
+    "canonical_abbrev": "donn eq",
+    "vols": null,
+    "er_vol": [
+      47
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Dowl. & Ry": {
+    "canonical_abbrev": "dowl & ry",
+    "vols": null,
+    "er_vol": [
+      171
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Dowl & Ry": {
+    "canonical_abbrev": "dowl & ry",
+    "vols": null,
+    "er_vol": [
+      171
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Edw": {
+    "canonical_abbrev": "edw",
+    "vols": null,
+    "er_vol": [
+      165
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Exch": {
+    "canonical_abbrev": "exch",
+    "vols": null,
+    "er_vol": [
+      154,
+      155,
+      156
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Fitzg": {
+    "canonical_abbrev": "fitzg",
+    "vols": null,
+    "er_vol": [
+      94
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Forr": {
+    "canonical_abbrev": "forr",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Fort": {
+    "canonical_abbrev": "fort",
+    "vols": null,
+    "er_vol": [
+      92
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Fost": {
+    "canonical_abbrev": "fost",
+    "vols": null,
+    "er_vol": [
+      168
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Gilb. Rep": {
+    "canonical_abbrev": "gilb rep",
+    "vols": null,
+    "er_vol": [
+      25
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Gilb Rep": {
+    "canonical_abbrev": "gilb rep",
+    "vols": null,
+    "er_vol": [
+      25
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Godb": {
+    "canonical_abbrev": "godb",
+    "vols": null,
+    "er_vol": [
+      78
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Gould": {
+    "canonical_abbrev": "gould",
+    "vols": null,
+    "er_vol": [
+      75
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Gow": {
+    "canonical_abbrev": "gow",
+    "vols": null,
+    "er_vol": [
+      171
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Hagg. Ecc": {
+    "canonical_abbrev": "hagg ecc",
+    "vols": null,
+    "er_vol": [
+      162
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Hagg Ecc": {
+    "canonical_abbrev": "hagg ecc",
+    "vols": null,
+    "er_vol": [
+      162
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Hardres or": {
+    "canonical_abbrev": "hardres or",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Hay & M": {
+    "canonical_abbrev": "hay & m",
+    "vols": null,
+    "er_vol": [
+      165
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Het": {
+    "canonical_abbrev": "het",
+    "vols": null,
+    "er_vol": [
+      124
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Hob": {
+    "canonical_abbrev": "hob",
+    "vols": null,
+    "er_vol": [
+      80
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Holt": {
+    "canonical_abbrev": "holt",
+    "vols": null,
+    "er_vol": [
+      171
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "H.L.C": {
+    "canonical_abbrev": "hlc",
+    "vols": null,
+    "er_vol": [
+      9,
+      10,
+      11
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "HLC": {
+    "canonical_abbrev": "hlc",
+    "vols": null,
+    "er_vol": [
+      9,
+      10,
+      11
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "Hut": {
+    "canonical_abbrev": "hut",
+    "vols": null,
+    "er_vol": [
+      123
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Jac": {
+    "canonical_abbrev": "jac",
+    "vols": null,
+    "er_vol": [
+      37
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Jenk": {
+    "canonical_abbrev": "jenk",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Johns": {
+    "canonical_abbrev": "johns",
+    "vols": null,
+    "er_vol": [
+      70
+    ],
+    "series": [
+      "V.C."
+    ]
+  },
+  "Kay": {
+    "canonical_abbrev": "kay",
+    "vols": null,
+    "er_vol": [
+      69
+    ],
+    "series": [
+      "V.C."
+    ]
+  },
+  "Keil": {
+    "canonical_abbrev": "keil",
+    "vols": null,
+    "er_vol": [
+      72
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "kel. J": {
+    "canonical_abbrev": "kel j",
+    "vols": null,
+    "er_vol": [
+      84
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "kel J": {
+    "canonical_abbrev": "kel j",
+    "vols": null,
+    "er_vol": [
+      84
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Lane": {
+    "canonical_abbrev": "lane",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Latch": {
+    "canonical_abbrev": "latch",
+    "vols": null,
+    "er_vol": [
+      82
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Le. & Ca": {
+    "canonical_abbrev": "le & ca",
+    "vols": null,
+    "er_vol": [
+      169
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Le & Ca": {
+    "canonical_abbrev": "le & ca",
+    "vols": null,
+    "er_vol": [
+      169
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Lewin": {
+    "canonical_abbrev": "lewin",
+    "vols": null,
+    "er_vol": [
+      168
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Ley": {
+    "canonical_abbrev": "ley",
+    "vols": null,
+    "er_vol": [
+      80
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Lilly Ass": {
+    "canonical_abbrev": "lilly ass",
+    "vols": null,
+    "er_vol": [
+      170
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Lit": {
+    "canonical_abbrev": "lit",
+    "vols": null,
+    "er_vol": [
+      124
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Lofit": {
+    "canonical_abbrev": "lofit",
+    "vols": null,
+    "er_vol": [
+      98
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Lush": {
+    "canonical_abbrev": "lush",
+    "vols": null,
+    "er_vol": [
+      167
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Lut": {
+    "canonical_abbrev": "lut",
+    "vols": 2,
+    "er_vol": [
+      125
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Macl. & R": {
+    "canonical_abbrev": "macl & r",
+    "vols": null,
+    "er_vol": [
+      9
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "Macl & R": {
+    "canonical_abbrev": "macl & r",
+    "vols": null,
+    "er_vol": [
+      9
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "M'Cle": {
+    "canonical_abbrev": "m'cle",
+    "vols": null,
+    "er_vol": [
+      148
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Mac. & G": {
+    "canonical_abbrev": "mac & g",
+    "vols": null,
+    "er_vol": [
+      41,
+      42
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Mac & G": {
+    "canonical_abbrev": "mac & g",
+    "vols": null,
+    "er_vol": [
+      41,
+      42
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "M. & M": {
+    "canonical_abbrev": "m & m",
+    "vols": null,
+    "er_vol": [
+      173
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "M & M": {
+    "canonical_abbrev": "m & m",
+    "vols": null,
+    "er_vol": [
+      173
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Moo. Ind. App": {
+    "canonical_abbrev": "moo ind app",
+    "vols": null,
+    "er_vol": [
+      18,
+      19,
+      20
+    ],
+    "series": [
+      "P.C."
+    ]
+  },
+  "Moo Ind App": {
+    "canonical_abbrev": "moo ind app",
+    "vols": null,
+    "er_vol": [
+      18,
+      19,
+      20
+    ],
+    "series": [
+      "P.C."
+    ]
+  },
+  "Mos": {
+    "canonical_abbrev": "mos",
+    "vols": null,
+    "er_vol": [
+      25
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Nels": {
+    "canonical_abbrev": "nels",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Noy": {
+    "canonical_abbrev": "noy",
+    "vols": null,
+    "er_vol": [
+      74
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Ow": {
+    "canonical_abbrev": "ow",
+    "vols": null,
+    "er_vol": [
+      74
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Palm": {
+    "canonical_abbrev": "palm",
+    "vols": null,
+    "er_vol": [
+      81
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Park": {
+    "canonical_abbrev": "park",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Peake": {
+    "canonical_abbrev": "peake",
+    "vols": null,
+    "er_vol": [
+      170
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Pollex": {
+    "canonical_abbrev": "pollex",
+    "vols": null,
+    "er_vol": [
+      86
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Pop": {
+    "canonical_abbrev": "pop",
+    "vols": null,
+    "er_vol": [
+      79
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Pree. Ch. or": {
+    "canonical_abbrev": "pree ch or",
+    "vols": null,
+    "er_vol": [
+      24
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Pree Ch or": {
+    "canonical_abbrev": "pree ch or",
+    "vols": null,
+    "er_vol": [
+      24
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Rep. Ch. or": {
+    "canonical_abbrev": "rep ch or",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Rep Ch or": {
+    "canonical_abbrev": "rep ch or",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Russ. & Ry": {
+    "canonical_abbrev": "russ & ry",
+    "vols": null,
+    "er_vol": [
+      168
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Russ & Ry": {
+    "canonical_abbrev": "russ & ry",
+    "vols": null,
+    "er_vol": [
+      168
+    ],
+    "series": [
+      "Crown."
+    ]
+  },
+  "Ry. & Mood": {
+    "canonical_abbrev": "ry & mood",
+    "vols": null,
+    "er_vol": [
+      171
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Ry & Mood": {
+    "canonical_abbrev": "ry & mood",
+    "vols": null,
+    "er_vol": [
+      171
+    ],
+    "series": [
+      "N.P."
+    ]
+  },
+  "Sav": {
+    "canonical_abbrev": "sav",
+    "vols": null,
+    "er_vol": [
+      123
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Say": {
+    "canonical_abbrev": "say",
+    "vols": null,
+    "er_vol": [
+      96
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Sess. Cas": {
+    "canonical_abbrev": "sess cas",
+    "vols": null,
+    "er_vol": [
+      93
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Sess Cas": {
+    "canonical_abbrev": "sess cas",
+    "vols": null,
+    "er_vol": [
+      93
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Skin": {
+    "canonical_abbrev": "skin",
+    "vols": null,
+    "er_vol": [
+      90
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Sp. P.C": {
+    "canonical_abbrev": "sp pc",
+    "vols": null,
+    "er_vol": [
+      164
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Sp PC": {
+    "canonical_abbrev": "sp pc",
+    "vols": null,
+    "er_vol": [
+      164
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Sty": {
+    "canonical_abbrev": "sty",
+    "vols": null,
+    "er_vol": [
+      82
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Swab": {
+    "canonical_abbrev": "swab",
+    "vols": null,
+    "er_vol": [
+      166
+    ],
+    "series": [
+      "Ecc."
+    ]
+  },
+  "Taml": {
+    "canonical_abbrev": "taml",
+    "vols": null,
+    "er_vol": [
+      48
+    ],
+    "series": [
+      "Rolls."
+    ]
+  },
+  "Toth": {
+    "canonical_abbrev": "toth",
+    "vols": null,
+    "er_vol": [
+      21
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Turn. & R": {
+    "canonical_abbrev": "turn & r",
+    "vols": null,
+    "er_vol": [
+      37
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Turn & R": {
+    "canonical_abbrev": "turn & r",
+    "vols": null,
+    "er_vol": [
+      37
+    ],
+    "series": [
+      "Ch."
+    ]
+  },
+  "Vaugh": {
+    "canonical_abbrev": "vaugh",
+    "vols": null,
+    "er_vol": [
+      124
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "West": {
+    "canonical_abbrev": "west",
+    "vols": null,
+    "er_vol": [
+      9
+    ],
+    "series": [
+      "H.L."
+    ]
+  },
+  "Wight": {
+    "canonical_abbrev": "wight",
+    "vols": null,
+    "er_vol": [
+      145
+    ],
+    "series": [
+      "Ex."
+    ]
+  },
+  "Willes": {
+    "canonical_abbrev": "willes",
+    "vols": null,
+    "er_vol": [
+      125
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Wilm": {
+    "canonical_abbrev": "wilm",
+    "vols": null,
+    "er_vol": [
+      97
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "Wils. Ex": {
+    "canonical_abbrev": "wils ex",
+    "vols": null,
+    "er_vol": [
+      159
+    ],
+    "series": [
+      "Ex. (Eq.)"
+    ]
+  },
+  "Wils Ex": {
+    "canonical_abbrev": "wils ex",
+    "vols": null,
+    "er_vol": [
+      159
+    ],
+    "series": [
+      "Ex. (Eq.)"
+    ]
+  },
+  "Winch": {
+    "canonical_abbrev": "winch",
+    "vols": null,
+    "er_vol": [
+      124
+    ],
+    "series": [
+      "C.P."
+    ]
+  },
+  "Yel": {
+    "canonical_abbrev": "yel",
+    "vols": null,
+    "er_vol": [
+      80
+    ],
+    "series": [
+      "K.B."
+    ]
+  },
+  "You": {
+    "canonical_abbrev": "you",
+    "vols": null,
+    "er_vol": [
+      159
+    ],
+    "series": [
+      "Ex. (Eq.)"
+    ]
+  },
+  "Y. & C.C.C": {
+    "canonical_abbrev": "y & ccc",
+    "vols": null,
+    "er_vol": [
+      62,
+      63
+    ],
+    "series": [
+      "V.C."
+    ]
+  },
+  "Y & CCC": {
+    "canonical_abbrev": "y & ccc",
+    "vols": null,
+    "er_vol": [
+      62,
+      63
+    ],
+    "series": [
+      "V.C."
+    ]
+  }
+}
