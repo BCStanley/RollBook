@@ -1,13 +1,9 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-
-from pathlib import Path
-
 import json
-
 import re
-
+from dataclasses import dataclass
+from pathlib import Path
 
 ABBREV_MAP_FILENAME = "abbrev_map.json"
 REPORTER_MAP_FILENAME = "reporters.json"

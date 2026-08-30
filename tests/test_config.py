@@ -1,8 +1,8 @@
-import pytest
-
 import json
 
-from rollbook.config import load_regex_map, load_reporter_map, load_config, ConfigError
+import pytest
+
+from rollbook.config import ConfigError, load_config, load_regex_map, load_reporter_map
 
 
 def test_load_regex_map_valid_entry(tmp_path):
