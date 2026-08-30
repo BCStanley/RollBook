@@ -148,3 +148,14 @@ def ensure_model_cached(entry: ModelEntry,
         does not match checksum {entry.checksum}. Possible network issue or corrupted file.
         Fetched file removed.""")
 
+
+def find_model(selector: str, catalog: tuple[ModelEntry, ...]) -> ModelEntry:
+    if "@" not in selector:
+        raise ManifestError(f"model selector \"{selector}\" invalid: must be name@version")
+    name = selector.split("@", 1)[0]
+    version = selector.split("@", 1)[1]
+    for entry in catalog:
+        if name == entry.name and version == entry.version:
+            return entry
+    raise ManifestError(f"Model of name {name} and version {version} not found in ModelManifest")
+

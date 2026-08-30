@@ -18,7 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Topic :: Text Processing :: Linguistic",
 ]
-dependencies = []
+dependencies = ["pdf2image>=1.16"]
 
 [project.urls]
 Homepage = "https://github.com/BCStanley/rollbook"
@@ -48,6 +48,10 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 python_version = "3.11"
 packages = ["rollbook"]
 strict = true
+
+[[tool.mypy.overrides]]
+module = "pdf2image"
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
