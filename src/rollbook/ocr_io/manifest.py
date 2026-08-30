@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.request import urlopen
 
+DEFAULT_MANIFEST_URL = "https://github.com/BCStanley/RollBook/releases/latest/download/manifest.json"
+
 
 @dataclass(frozen=True)
 class ModelEntry:
@@ -158,4 +160,31 @@ def find_model(selector: str, catalog: tuple[ModelEntry, ...]) -> ModelEntry:
         if name == entry.name and version == entry.version:
             return entry
     raise ManifestError(f"Model of name {name} and version {version} not found in ModelManifest")
+
+
+def update_manifest_cache(
+        cache_dir: Path,
+        manifest_url: str = DEFAULT_MANIFEST_URL,
+        fetch: Callable[[str, Path], None] = fetch_model) -> Path:
+
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    destination = cache_dir / "manifest.json"
+    try:
+        fetch(manifest_url, destination)
+    except Exception as e:
+        if destination.exists():
+            os.remove(destination)
+        raise ManifestError(f"Could not obtain manifest.json from {manifest_url}: {e}") from e
+    return destination
+
+
+def ensure_manifest_cached(
+        cache_dir: Path,
+        manifest_url: str = DEFAULT_MANIFEST_URL,
+        fetch: Callable[[str, Path], None] = fetch_model) -> Path:
+    destination = cache_dir / "manifest.json"
+    if destination.exists():
+        return destination
+    return update_manifest_cache(cache_dir, manifest_url, fetch)
+
 
