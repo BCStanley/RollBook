@@ -22,7 +22,10 @@ import sys
 import os
 from collections.abc import Callable, Sequence
 from pathlib import Path
-from rollbook.ocr_io.manifest import ManifestError, ensure_manifest_cached, load_manifest
+from rollbook.ocr_io.manifest import ManifestError, ensure_manifest_cached, load_manifest, find_model, ModelEntry, ensure_model_cached
+from rollbook.ocr_io.run_kraken import render_pdf_pages, run_kraken_per_page, concatenate_pages
+import tempfile
+from rich.console import Console
 
 from rollbook.__about__ import __version__
 
@@ -40,6 +43,7 @@ SYSTEM_GROUPS: list[tuple[str, str, int, str]] = [
     ("models", "ocr_io.manifest", 2, "List and fetch OCR model weights."),
 ]
 
+console = Console()
 
 def default_cache_dir() -> Path:
     xdg_cache_home = os.environ.get("XDG_CACHE_HOME")
@@ -76,12 +80,61 @@ def _list_models() -> int:
         return 1
     print("=== Segmentation Models ===")
     for model in manifest.segmentation_models:
-        print(f"    {model.name}@{model.version}")
-    print("""
-    === Recognition Models ===""")
+        print(f"{model.name}@{model.version}")
+    print("\n\n=== Recognition Models ===")
     for model in manifest.recognition_models:
         print(f"    {model.name}@{model.version}")
     return 0
+
+
+def _run_ocr(
+        pdf_path: Path,
+        output_path: Path,
+        seg_selector: str,
+        ocr_selector: str,
+        dpi: int,
+) -> int:
+    def _print_progress(page: int, total: int) -> None:
+        print(f"\rocr: completed page {page}/{total}.\n", end="", flush=True)
+    cache_dir = default_cache_dir()
+    try:
+        manifest_path = ensure_manifest_cached(cache_dir)
+        manifest = load_manifest(manifest_path)
+        ocr_model_entry: ModelEntry = find_model(ocr_selector, manifest.recognition_models)
+        seg_model_entry: ModelEntry = find_model(seg_selector, manifest.segmentation_models)
+        print(f"""ocr: Found ModelEntries for {seg_selector} and {ocr_selector}.
+        Ensuring they are cached.
+        """)
+        ocr_model_path: Path = ensure_model_cached(ocr_model_entry, cache_dir)
+        seg_model_path: Path = ensure_model_cached(seg_model_entry, cache_dir)
+        print(f"""ocr: Models {seg_selector} and {ocr_selector} cached at {str(seg_model_path)} and {str(ocr_model_path)}.
+        """)
+    except ManifestError as e:
+        print(f"ocr: {e}")
+        return 1
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            with console.status(f"ocr: Rendering {pdf_path} as png images..."):
+                images: tuple[Path, ...] = render_pdf_pages(pdf_path, tmp_path, dpi=dpi)
+            print(f"ocr: Rendered {len(images)} pages. Running ocr on each.")
+            txts: tuple[Path, ...] = run_kraken_per_page(
+                image_paths = images,
+                output_dir = tmp_path,
+                seg_model_path = seg_model_path,
+                ocr_model_path = ocr_model_path,
+                extra_args = None,
+                on_page_done = _print_progress)
+            print("ocr: Finished ocr on individual pages. Concatenating.")
+            final_txt = concatenate_pages(
+                page_paths = txts,
+                filename = str(output_path.name),
+                output_dir = output_path.parent)
+            print(f"ocr: completed ocr on {str(pdf_path)}: {str(output_path)}.")
+        return 0
+    except Exception as e:
+        print(f"ocr: {e}")
+        return 1
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -106,6 +159,16 @@ def build_parser() -> argparse.ArgumentParser:
         if name == "models":
             list_parser = group_sub.add_parser("list", help="List available OCR / segmentation models.")
             list_parser.set_defaults(func=lambda _args: _list_models())
+        elif name == "ocr":
+            run_parser = group_sub.add_parser("run", help="Run the OCR pipline on a PDF")
+            run_parser.add_argument("input", type=Path, help="Input PDF file.")
+            run_parser.add_argument("--output", required=True, type=Path, help="Output .txt file.")
+            run_parser.add_argument("--seg-model", required=True, help="Segmentation model selector (name@version).")
+            run_parser.add_argument("--ocr-model", required=True, help="Recognition model selector (name@version).")
+            run_parser.add_argument("--dpi", type=int, default=400, help="Rendering DPI (default: 400).")
+            run_parser.set_defaults(
+                func=lambda args: _run_ocr(args.input, args.output, args.seg_model, args.ocr_model, args.dpi)
+            )
 
         else: 
             run_parser = group_sub.add_parser("run", help=f"Run {name}. Not yet implemented.")

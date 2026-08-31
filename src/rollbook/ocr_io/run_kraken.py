@@ -1,6 +1,7 @@
 import subprocess
 from pathlib import Path
 from pdf2image import convert_from_path
+from collections.abc import Callable
 
 def build_kraken_command(image_path: Path,
                          output_path:Path,
@@ -47,9 +48,10 @@ def run_kraken_per_page(image_paths: tuple[Path, ...],
                         output_dir: Path,
                         seg_model_path: Path,
                         ocr_model_path: Path,
-                        extra_args: list[str] | None = None) -> tuple[Path, ...]:
+                        extra_args: list[str] | None = None,
+                        on_page_done: Callable[[int, int], None] | None = None,) -> tuple[Path, ...]:
     txt_tuple: tuple[Path, ...] = ()
-    for image_path in image_paths:
+    for i, image_path in enumerate(image_paths, start=1):
         output_path = output_dir / f"{image_path.stem}.txt"
         cmd = build_kraken_command(
             image_path=image_path,
@@ -60,6 +62,8 @@ def run_kraken_per_page(image_paths: tuple[Path, ...],
         )
         run_kraken(cmd)
         txt_tuple += output_path,
+        if on_page_done:
+            on_page_done(i, len(image_paths))
     return txt_tuple
 
 
