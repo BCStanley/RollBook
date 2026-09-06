@@ -70,7 +70,7 @@ def run_kraken_per_page(image_paths: tuple[Path, ...],
 def concatenate_pages(page_paths: tuple[Path, ...],
                       filename: str,
                       output_dir: Path,
-                      separator: str = "\n\n") -> Path:
+                      separator: str = "\n{{/PAGE/}}\n") -> Path:
     out_path = output_dir / filename
     with out_path.open("w", encoding="utf-8") as f:
         for page in page_paths:

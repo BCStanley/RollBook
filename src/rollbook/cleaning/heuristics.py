@@ -251,7 +251,7 @@ class LowercaseToken(LineDefectHeuristic):
 
 
 class InternalCapital(LineDefectHeuristic):
-    name = "internal_captial"
+    name = "internal_capital"
     WORD = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)?")
 
     def check(self, line: str) -> LineDefect | None:
@@ -298,6 +298,9 @@ class AutoDigitLetter(LineDefectHeuristic):
         fixed = self.CANDIDATE.sub(self._fix_token, line)
         if fixed != line:
             return LineDefect(proposed=fixed)
+        for m in self.CANDIDATE.finditer(line):
+            if not any(c.isdigit() for c in m.group(0)):
+                return LineDefect(proposed=None)
         return None
 
 
