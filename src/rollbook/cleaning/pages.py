@@ -13,6 +13,9 @@ def load_pages(path: Path) -> list[list[str]]:
     pages.append(new_page)
     return pages
 
+def load_lines(path: Path) -> list[str]:
+    return path.read_text(encoding="utf-8").splitlines()
+
 
 
 

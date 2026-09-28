@@ -30,6 +30,16 @@ def build_user_monitored_single_line(reporter_map: ReporterMap) -> UserMonitored
         )
     )
 
+def build_user_monitored_multiple_line() -> UserMonitoredMultiLine:
+    return UserMonitoredMultiLine(
+        heuristics = (
+            WrapContinuation(),
+            NameWrapContinuation(),
+            ResolveDuplicateParties()
+        )
+    )
+
+
 def apply_automatic_heuristics(line: str, heuristics: AutomaticHeuristics) -> str:
     fixed_line = line
     for heuristic in heuristics:
@@ -47,4 +57,16 @@ def first_flagged_defect(line: str, heuristics: UserMonitoredSingleLine) -> Line
             return potential_defect
     return None
 
+def apply_structural_heuristics(lines: list[str], heuristics: UserMonitoredMultiLine, start: int) -> tuple[StructuralMatch, StructuralHeuristic] | None:
+    best: tuple[StructuralMatch, StructuralHeuristic] | None = None
+    for heuristic in heuristics:
+        result = heuristic.scan(lines, start)
+        if result is not None:
+            if not best:
+                best = (result, heuristic)
+            elif result.line_indices[0] < best[0].line_indices[0]:
+                best = (result, heuristic)
+    return best
+
+    
 
