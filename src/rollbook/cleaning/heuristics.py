@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass
 from typing import Protocol, Literal
 from collections.abc import Callable, Sequence, Iterator
-from config import ReporterMap
+from rollbook.config import ReporterMap
 
 
 # Underlying Dataclasses
