@@ -427,6 +427,8 @@ class NameWrapContinuation(StructuralHeuristic):
     
     def scan(self, lines: Sequence[str], start: int) -> StructuralMatch | None:
         for i in range(start, len(lines)):
+            if lines[i] == PAGE_MARKER:
+                continue
             if not self.HAS_DIGIT.search(lines[i]): # No digit:
                 indices = [i]
                 digit = False
