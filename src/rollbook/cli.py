@@ -26,6 +26,8 @@ from rollbook.ocr_io.manifest import ManifestError, ensure_manifest_cached, load
 from rollbook.ocr_io.run_kraken import render_pdf_pages, run_kraken_per_page, concatenate_pages
 import tempfile
 from rich.console import Console
+from rollbook.cleaning.pages import load_lines
+from rollbook.cleaning.review_app import ReviewApp, export_clean_text
 
 from rollbook.__about__ import __version__
 
@@ -136,6 +138,19 @@ def _run_ocr(
         print(f"ocr: {e}")
         return 1
 
+def _run_clean(input_path: Path, history_path: Path | None) -> int:
+    ReviewApp(input_path, history_path).run()
+    return 0
+
+def _export_clean(input_path: Path, output_path: Path) -> int:
+    working_path = input_path.with_suffix(".working.txt")
+    if not working_path.exists():
+        print(f"clean: no working copy found at {working_path} -- run 'rollbook clean run {input_path}' first.")
+        return 1
+    lines = load_lines(working_path)
+    output_path.write_text(export_clean_text(lines), encoding="utf-8")
+    print(f"clean: exported: {output_path}")
+    return 0
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -169,6 +184,21 @@ def build_parser() -> argparse.ArgumentParser:
             run_parser.set_defaults(
                 func=lambda args: _run_ocr(args.input, args.output, args.seg_model, args.ocr_model, args.dpi)
             )
+        elif name == "clean":
+            run_parser = group_sub.add_parser("run", help="Interactively review and correct OCR output.")
+            run_parser.add_argument("input", type=Path, help="Input raw OCR .txt file.")
+            run_parser.add_argument(
+                "--history", type=Path, default=None,
+                help="Correction history file (default: <input>.corrections.jsonl).",
+            )
+            run_parser.set_defaults(func=lambda args: _run_clean(args.input, args.history))
+            export_parser = group_sub.add_parser(
+                "export", help="Export the cleaned, marker-free text for a reviewed document."
+            )
+            export_parser.add_argument("input", type=Path, help="The same input path use with 'clean run'.")
+            export_parser.add_argument("--output", required=True, type=Path, help="Output .txt file.")
+            export_parser.set_defaults(func=lambda args: _export_clean(args.input, args.output))
+
 
         else: 
             run_parser = group_sub.add_parser("run", help=f"Run {name}. Not yet implemented.")

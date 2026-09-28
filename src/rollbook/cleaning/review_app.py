@@ -37,6 +37,20 @@ def total_pages(lines: Sequence[str]) -> int:
     return len(marker_positions(lines)) + 1
 
 
+def export_clean_text(lines: Sequence[str]) -> str:
+    """Join every non-marker line into the final, cleaned document text
+    that Phase 3 (parsing) will actually consume. PAGE_MARKER is a purely
+    review-app-internal device -- it exists so structural heuristics know
+    not to merge across a page boundary, and so review can be paced page
+    by page -- and has no meaning to anything downstream. Pure and
+    side-effect free: takes the lines as they stand, doesn't touch the
+    filesystem or the app, so it's directly unit-testable and directly
+    reusable from a CLI command that doesn't need a running ReviewApp at
+    all, only a previously-saved working copy to read.
+    """
+    return "\n".join(line for line in lines if line != PAGE_MARKER) + "\n"
+
+
 def content_line_number(lines: Sequence[str], raw_index: int) -> int:
     """Convert a raw index into `lines` (which may include PAGE_MARKER
     entries) into a content-only line number -- the position this line
@@ -276,14 +290,15 @@ class ReviewApp(App):
         Binding("escape", "skip_guided", "Skip guided review", show=False),
         Binding("ctrl+r", "reject_structural", "Reject match", show=False),
         Binding("y", "confirm_structural_group", "Confirm group", show=False),
+        Binding("ctrl+z", "undo", "Undo"),
     ]
 
     def __init__(self, path: Path, history_path: Path | None = None) -> None:
         super().__init__()
         self.path: Path = path
+        self.working_path: Path = path.with_suffix(".working.txt")
         self.history_path: Path = history_path or path.with_suffix(".corrections.jsonl")
 
-        raw_lines = load_lines(path)
         self.automatic_heuristics = pipeline.build_automatic_heuristics(pipeline.reporter_map)
         self.single_line_heuristics = pipeline.build_user_monitored_single_line(pipeline.reporter_map)
         self.multi_line_heuristics = pipeline.build_user_monitored_multiple_line()
@@ -293,12 +308,33 @@ class ReviewApp(App):
         # always computed on demand from wherever the markers currently sit
         # (see page_bounds), so a structural edit that changes how many
         # lines exist can never leave a separate page structure out of sync.
-        self.lines: list[str] = [
-            line if line == PAGE_MARKER else pipeline.apply_automatic_heuristics(line, self.automatic_heuristics)
-            for line in raw_lines
-        ]
+        #
+        # Resuming: a working copy already has automatic heuristics *and*
+        # every past confirmed edit applied -- re-deriving from the raw
+        # file would silently discard all of that. So the raw file only
+        # ever gets read (and automatic heuristics only ever get applied)
+        # the first time a document is opened; every subsequent launch
+        # picks up exactly where the last session's last save left off.
+        if self.working_path.exists():
+            self.lines: list[str] = load_lines(self.working_path)
+        else:
+            raw_lines = load_lines(path)
+            self.lines = [
+                line if line == PAGE_MARKER else pipeline.apply_automatic_heuristics(line, self.automatic_heuristics)
+                for line in raw_lines
+            ]
 
         self.history: CorrectionHistory = self._load_history()
+
+        # One (lines-before, history-length-before) snapshot per confirmed
+        # decision -- a single-line edit, a merge, a party-expansion
+        # confirm, or a rejection -- pushed immediately before that
+        # decision is applied, so action_undo can pop back to exactly
+        # before the most recent one. Session-only: rebuilt empty on
+        # every construction, not itself persisted, since undo is meant
+        # to walk back what you just did in this sitting, not reach into
+        # an earlier one.
+        self._undo_stack: list[tuple[list[str], int]] = []
 
         self.current_page: int = 0
 
@@ -384,7 +420,7 @@ class ReviewApp(App):
 
     async def action_next_page(self) -> None:
         if self.current_page < total_pages(self.lines) - 1:
-            self._save_history()
+            self._save_progress()
             # Abandon any structural match still being shown on the page
             # we're leaving -- it was never resolved (no record logged),
             # so it'll simply be found again if this page is revisited.
@@ -398,7 +434,7 @@ class ReviewApp(App):
 
     async def action_prev_page(self) -> None:
         if self.current_page > 0:
-            self._save_history()
+            self._save_progress()
             self._current_structural = None
             self.current_page -= 1
             await self._refresh_page()
@@ -569,11 +605,14 @@ class ReviewApp(App):
         assert self._current_structural is not None
         match, heuristic = self._current_structural
 
+        self._undo_stack.append((list(self.lines), len(self.history.records)))
+
         record = build_merge_record(self.lines, match, heuristic, final_text)
         self.history.append(record)
 
         start_idx = match.line_indices[0]
         spliced = splice_matched_lines(self.lines, match, [final_text])
+        self._save_progress()
 
         self._current_structural = None
         self._structural_search_start = start_idx + len(spliced)
@@ -595,6 +634,8 @@ class ReviewApp(App):
         if heuristic.kind != "party_expansion":
             return
 
+        self._undo_stack.append((list(self.lines), len(self.history.records)))
+
         records = build_party_expansion_records(self.lines, match, heuristic, confirmed=True)
         for record in records:
             self.history.append(record)
@@ -602,6 +643,7 @@ class ReviewApp(App):
         proposals = list(match.proposed or ())
         start_idx = match.line_indices[0]
         spliced = splice_matched_lines(self.lines, match, proposals)
+        self._save_progress()
 
         self._current_structural = None
         self._structural_search_start = start_idx + len(spliced)
@@ -613,12 +655,15 @@ class ReviewApp(App):
             return
         match, heuristic = self._current_structural
 
+        self._undo_stack.append((list(self.lines), len(self.history.records)))
+
         if heuristic.kind == "merge":
             record = build_merge_record(self.lines, match, heuristic, final_text=None)
             self.history.append(record)
         else:
             for record in build_party_expansion_records(self.lines, match, heuristic, confirmed=False):
                 self.history.append(record)
+        self._save_progress()
 
         # self.lines itself doesn't change on a rejection, but the
         # ListView's highlighting does need to move off this match --
@@ -655,6 +700,42 @@ class ReviewApp(App):
             # is a property of each line's content, not of review progress,
             # so it needs no refresh to stay accurate.
             await self._refresh_page()
+
+    async def action_undo(self) -> None:
+        """Pop the most recent confirmed decision -- a single-line edit,
+        a merge, a party-expansion confirm, or a rejection -- and restore
+        self.lines and self.history to immediately before it.
+
+        Per Ben's call: undoing a logged decision removes its record(s)
+        entirely, rather than keeping them marked as undone, so the saved
+        history stays an accurate account of decisions that currently
+        stand, not a full replay log of everything that was ever tried.
+
+        Undoes the single most recent decision *globally*, not "on this
+        page": self.lines is one flat document, not a per-page structure,
+        so if you've since navigated to a different page, the undo still
+        applies to wherever it happened -- you'll just need to navigate
+        back to see it. Session-only, since _undo_stack is rebuilt empty
+        on every launch (see __init__): it can walk back what you did in
+        this sitting, not reach into an earlier saved session.
+        """
+        if not self._undo_stack:
+            self._show_instructions("Nothing to undo.")
+            return
+
+        lines_snapshot, history_length = self._undo_stack.pop()
+        self.lines = lines_snapshot
+        del self.history.records[history_length:]
+        self._save_progress()
+
+        self._current_structural = None
+        self._editing_index = None
+        edit_input = self.query_one(Input)
+        edit_input.value = ""
+        edit_input.display = False
+
+        await self._refresh_page()
+        await self._start_guided_review()
 
     def _show_instructions(self, text: str) -> None:
         self.query_one("#instructions", Static).update(text)
@@ -722,6 +803,8 @@ class ReviewApp(App):
         if new_text == original and not guided:
             return
 
+        self._undo_stack.append((list(self.lines), len(self.history.records)))
+
         record = CorrectionRecord(
             line=content_line_number(self.lines, raw_index),
             initiator="heuristic" if guided else "user",
@@ -733,12 +816,24 @@ class ReviewApp(App):
         )
         self.lines[raw_index] = new_text
         self.history.append(record)
+        self._save_progress()
 
-    def _save_history(self) -> None:
+    def _save_progress(self) -> None:
+        """Persist both the working copy of the document (self.lines as
+        it currently stands, PAGE_MARKERs included -- this is what makes
+        resuming a review across sessions actually work, per __init__'s
+        resume logic above) and the correction history, together, so the
+        two never drift out of sync with each other on disk. Called after
+        every confirmed decision, not just on quit: a ~5,000-line index
+        is a small text write, cheap enough that saving on every single
+        edit is worth it for what it buys -- a crash or an accidental
+        quit never loses more than whatever edit was in progress.
+        """
+        self.working_path.write_text("\n".join(self.lines) + "\n", encoding="utf-8")
         self.history.save(self.history_path)
 
     async def on_unmount(self) -> None:
-        self._save_history()
+        self._save_progress()
 
 
 if __name__ == "__main__":
