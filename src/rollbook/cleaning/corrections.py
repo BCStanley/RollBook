@@ -15,6 +15,7 @@ class CorrectionRecord:
     proposed: str | None
     final: str | None
     reviewed: bool
+    line_count: int = 1
 
 
 @dataclass
@@ -68,7 +69,8 @@ class CorrectionHistory:
                             original = record_dict["original"],
                             proposed = record_dict["proposed"],
                             final = record_dict["final"],
-                            reviewed = record_dict["reviewed"]
+                            reviewed = record_dict["reviewed"],
+                            line_count = record_dict["line_count"]
                     )
                     History.append(record)
         except FileNotFoundError as e:
